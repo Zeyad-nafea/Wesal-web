@@ -1,15 +1,11 @@
-const withMT = require("@material-tailwind/react/utils/withMT")
+const withMT = require("@material-tailwind/react/utils/withMT");
 module.exports = withMT({
   darkMode: "class",
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      colors: 
-      {
-          light: {
+      colors: {
+        light: {
           background: "#ffffff",
           foreground: "#1a1a1a",
           card: "#ffffff",
@@ -32,7 +28,7 @@ module.exports = withMT({
           hero: "#3a7a64",
           "hero-end": "#1a5441",
         },
-         dark: {
+        dark: {
           background: "#0a0a0a",
           foreground: "#ffffff",
           card: "#1a1a1a",
@@ -55,8 +51,7 @@ module.exports = withMT({
           hero: "#2d5a4d",
           "hero-end": "#0E3B2E",
         },
-
-      }
+      },
     },
   },
   plugins: [],

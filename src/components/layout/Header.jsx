@@ -173,7 +173,7 @@ const Header = () => {
   };
 
   return (
-    <Navbar className="w-full max-w-none rounded-none px-6 py-2 sticky top-0 z-50 bg-light-darkbg">
+    <Navbar className="w-full max-w-none rounded-none border-light-darkbg px-6 py-2 sticky top-0 z-50 bg-light-darkbg">
       <div className="flex items-center justify-between text-blue-gray-900">
         {/* Logo */}
         <Link to="/">
