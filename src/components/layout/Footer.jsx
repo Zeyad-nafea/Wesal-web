@@ -20,7 +20,7 @@ const LINKS = [
     items: [
       { label: "Help Center", path: "/help" },
       { label: "Blog", path: "/blog" },
-      { label: "FAQ", path: "/faq" },
+      { label: "FAQ", path: "/contact" },
       { label: "Contact", path: "/contact" },
     ],
   },
