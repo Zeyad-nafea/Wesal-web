@@ -12,7 +12,7 @@ import {
   Star,
   TrendingUp,
 } from "lucide-react";
-
+import { internships, featuredInternships } from "./internshipsData";
 // ─── Static Data ──────────────────────────────────────────────────────────────
 
 const featuredInternships = [
