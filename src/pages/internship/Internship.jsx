@@ -4,8 +4,7 @@ import {
   Briefcase, MapPin, Clock, Signal,
   Search, Filter, X, Star, TrendingUp,
 } from "lucide-react";
-import { internships, featuredInternships } from "../internship/internshipsData"
-
+import { internships, featuredInternships } from "../internshipsData";
 const fields    = ["All Fields", "Engineering", "Design", "Data", "Marketing", "Business"];
 const locations = ["All Locations", "Remote", "On-site", "Hybrid"];
 const types     = ["All Types", "Full-time", "Part-time"];
