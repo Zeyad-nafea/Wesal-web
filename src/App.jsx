@@ -10,6 +10,7 @@ import InternshipDetail from "./pages/internship/InternshipDetail";
 import Notfound from "./pages/Notfound";
 import Profile from "./pages/Profile";
 import Workshop from "./pages/Workshop";
+import WorkshopDetail from "./pages/workshop/WorkshopDetail";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Siginup";
 import About from "./pages/About/About";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/internship" element={<Internship />} />
           <Route path="/internship/:id" element={<InternshipDetail />} /> 
           <Route path="/workshop" element={<Workshop />} />
+          <Route path="/workshop/:id" element={<WorkshopDetail />} />  
           <Route path="/courses" element={<Courses />} />
           <Route path="/About" element={<About />} />
           <Route path="/Contact" element={<Contact />} />
