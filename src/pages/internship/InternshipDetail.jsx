@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { internships, workshops } from "../internshipsData";
+import { internships, workshops } from "../Internshipsdata";
 import {
   ArrowLeft, MapPin, Clock, Signal, Briefcase,
   DollarSign, CheckCircle2, ChevronRight,
