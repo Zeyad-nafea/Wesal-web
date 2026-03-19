@@ -4,7 +4,7 @@ import {
   Wrench, MapPin, Clock, Calendar,
   Search, Filter, X, TrendingUp, Signal,
 } from "lucide-react";
-import { workshops, featuredWorkshops } from "../internshipsData";
+import { workshops, featuredWorkshops } from "../Internshipsdata";
 
 const fields    = ["All Fields", "Engineering", "Design", "Data", "Marketing", "Business"];
 const locations = ["All Locations", "Online", "On-site", "Hybrid"];
