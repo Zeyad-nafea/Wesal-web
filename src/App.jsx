@@ -9,7 +9,7 @@ import Internship from "./pages/internship/Internship";
 import InternshipDetail from "./pages/internship/InternshipDetail"; 
 import Notfound from "./pages/Notfound";
 import Profile from "./pages/Profile";
-import Workshop from "./pages/Workshop";
+import Workshop from "./pages/workshop/Workshop";
 import WorkshopDetail from "./pages/workshop/WorkshopDetail";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Siginup";
