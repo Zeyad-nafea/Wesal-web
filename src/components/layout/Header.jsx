@@ -40,8 +40,12 @@ function AvatarWithUserDropdown() {
       <MenuHandler>
         <Button variant="text" color="blue-gray" className="flex items-center rounded-full p-0">
           <Avatar
-            variant="circular" size="md" alt="user"
-            withBorder={true} color="blue-gray" className="p-0.5"
+            variant="circular"
+            size="md"
+            alt="user"
+            withBorder={true}
+            color="blue-gray"
+            className="p-0.5"
             src="https://docs.material-tailwind.com/img/face-2.jpg"
           />
         </Button>
@@ -53,13 +57,22 @@ function AvatarWithUserDropdown() {
             <MenuItem
               key={label}
               onClick={() => handleMenuClick(label)}
-              className={`flex items-center gap-2 rounded ${isLastItem ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10" : ""}`}
+              className={`flex items-center gap-2 rounded ${
+                isLastItem
+                  ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
+                  : ""
+              }`}
             >
               {React.createElement(icon, {
                 className: `h-4 w-4 ${isLastItem ? "text-red-500" : ""}`,
                 strokeWidth: 2,
               })}
-              <Typography as="span" variant="small" className="font-normal" color={isLastItem ? "red" : "inherit"}>
+              <Typography
+                as="span"
+                variant="small"
+                className="font-normal"
+                color={isLastItem ? "red" : "inherit"}
+              >
                 {label}
               </Typography>
             </MenuItem>
@@ -69,9 +82,11 @@ function AvatarWithUserDropdown() {
     </Menu>
   );
 }
+
 function NavList({ closeMenu }) {
   const { isAuthenticated, isAdmin } = useAuth();
   const navigate = useNavigate();
+
   const handleNav = (path) => {
     navigate(path);
     closeMenu();
@@ -79,31 +94,63 @@ function NavList({ closeMenu }) {
 
   return (
     <List className="mb-6 mt-4 p-0 lg:mb-0 lg:mt-0 lg:flex-row lg:p-1">
-      <ListItem onClick={() => handleNav("/")} className="flex items-center gap-2 py-2 pr-4 font-medium text-light-cream cursor-pointer">
+      <ListItem
+        onClick={() => handleNav("/")}
+        className="flex items-center gap-2 py-2 pr-4 font-medium text-light-cream cursor-pointer"
+      >
         Home
       </ListItem>
-      <ListItem onClick={() => handleNav("/courses")} className="flex items-center gap-2 py-2 pr-4 font-medium text-light-cream cursor-pointer">
+
+      <ListItem
+        onClick={() => handleNav("/courses")}
+        className="flex items-center gap-2 py-2 pr-4 font-medium text-light-cream cursor-pointer"
+      >
         Courses
       </ListItem>
-      <ListItem onClick={() => handleNav("/internship")} className="flex items-center gap-2 py-2 pr-4 font-medium text-light-cream cursor-pointer">
+
+      <ListItem
+        onClick={() => handleNav("/internship")}
+        className="flex items-center gap-2 py-2 pr-4 font-medium text-light-cream cursor-pointer"
+      >
         Internship
       </ListItem>
-      <ListItem onClick={() => handleNav("/workshop")} className="flex items-center gap-2 py-2 pr-4 font-medium text-light-cream cursor-pointer">
+
+      <ListItem
+        onClick={() => handleNav("/workshop")}
+        className="flex items-center gap-2 py-2 pr-4 font-medium text-light-cream cursor-pointer"
+      >
         Workshop
       </ListItem>
-      <ListItem onClick={() => handleNav("/About")} className="flex items-center gap-2 py-2 pr-4 font-medium text-light-cream cursor-pointer">
+
+      {/* FIXED HERE 👇 */}
+      <ListItem
+        onClick={() => handleNav("/About")}
+        className="flex items-center gap-2 py-2 pr-4 font-medium text-light-cream cursor-pointer whitespace-nowrap"
+      >
         About Us
       </ListItem>
-      <ListItem onClick={() => handleNav("/Contact")} className="flex items-center gap-2 py-2 pr-4 font-medium text-light-cream cursor-pointer">
+
+      <ListItem
+        onClick={() => handleNav("/Contact")}
+        className="flex items-center gap-2 py-2 pr-4 font-medium text-light-cream cursor-pointer whitespace-nowrap"
+      >
         Contact us
       </ListItem>
+
       {isAuthenticated && (
-        <ListItem onClick={() => handleNav("/profile")} className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900 cursor-pointer">
+        <ListItem
+          onClick={() => handleNav("/profile")}
+          className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900 cursor-pointer"
+        >
           Profile
         </ListItem>
       )}
+
       {isAuthenticated && isAdmin() && (
-        <ListItem onClick={() => handleNav("/dashboard")} className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900 cursor-pointer">
+        <ListItem
+          onClick={() => handleNav("/dashboard")}
+          className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900 cursor-pointer"
+        >
           Dashboard
         </ListItem>
       )}
@@ -118,7 +165,9 @@ const Header = () => {
   const { theme, mode } = useTheme();
 
   React.useEffect(() => {
-    window.addEventListener("resize", () => window.innerWidth >= 960 && setOpenNav(false));
+    window.addEventListener("resize", () =>
+      window.innerWidth >= 960 && setOpenNav(false)
+    );
   }, []);
 
   return (
@@ -127,27 +176,49 @@ const Header = () => {
         <div onClick={() => navigate("/")} className="cursor-pointer">
           <img src="/Logo.png" alt="WESAL" className="h-28 w-auto" />
         </div>
+
         <div className="hidden lg:block">
           <NavList closeMenu={() => {}} />
         </div>
+
         <div className="hidden gap-2 lg:flex items-center">
-          <IconButton size="sm" variant="text" onClick={mode} className="text-light-cream hover:bg-white/10">
-            {theme === "dark" ? <FaSun className="h-4 w-4" /> : <FaMoon className="h-4 w-4" />}
+          <IconButton
+            size="sm"
+            variant="text"
+            onClick={mode}
+            className="text-light-cream hover:bg-white/10"
+          >
+            {theme === "dark" ? (
+              <FaSun className="h-4 w-4" />
+            ) : (
+              <FaMoon className="h-4 w-4" />
+            )}
           </IconButton>
+
           {isAuthenticated ? (
             <AvatarWithUserDropdown />
           ) : (
             <>
               <div onClick={() => navigate("/register")}>
-                <Button color="green" size="sm">GET STARTED</Button>
+                <Button color="green" size="sm">
+                  GET STARTED
+                </Button>
               </div>
+
               <div onClick={() => navigate("/login")}>
-                <Button color="amber" size="sm">LOG IN</Button>
+                <Button color="amber" size="sm">
+                  LOG IN
+                </Button>
               </div>
             </>
           )}
         </div>
-        <IconButton variant="text" className="lg:hidden" onClick={() => setOpenNav(!openNav)}>
+
+        <IconButton
+          variant="text"
+          className="lg:hidden"
+          onClick={() => setOpenNav(!openNav)}
+        >
           {openNav ? (
             <XMarkIcon className="h-6 w-6 text-white" strokeWidth={2} />
           ) : (
@@ -155,25 +226,54 @@ const Header = () => {
           )}
         </IconButton>
       </div>
+
       <Collapse open={openNav}>
         <NavList closeMenu={() => setOpenNav(false)} />
-        <Button size="xl" variant="text" onClick={mode} className="text-light-cream hover:bg-white/10 rounded-full">
+
+        <Button
+          size="xl"
+          variant="text"
+          onClick={mode}
+          className="text-light-cream hover:bg-white/10 rounded-full"
+        >
           {theme === "dark" ? (
-            <span className="flex gap-2"><FaSun className="h-4 w-4" /> Light</span>
+            <span className="flex gap-2">
+              <FaSun className="h-4 w-4" /> Light
+            </span>
           ) : (
-            <span className="flex gap-2"><FaMoon className="h-4 w-4" /> Dark</span>
+            <span className="flex gap-2">
+              <FaMoon className="h-4 w-4" /> Dark
+            </span>
           )}
         </Button>
+
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
           {isAuthenticated ? (
             <AvatarWithUserDropdown />
           ) : (
             <>
-              <div className="w-full" onClick={() => { navigate("/register"); setOpenNav(false); }}>
-                <Button color="green" size="sm" fullWidth>Get Started</Button>
+              <div
+                className="w-full"
+                onClick={() => {
+                  navigate("/register");
+                  setOpenNav(false);
+                }}
+              >
+                <Button color="green" size="sm" fullWidth>
+                  Get Started
+                </Button>
               </div>
-              <div className="w-full" onClick={() => { navigate("/login"); setOpenNav(false); }}>
-                <Button color="amber" size="sm" fullWidth>Log In</Button>
+
+              <div
+                className="w-full"
+                onClick={() => {
+                  navigate("/login");
+                  setOpenNav(false);
+                }}
+              >
+                <Button color="amber" size="sm" fullWidth>
+                  Log In
+                </Button>
               </div>
             </>
           )}

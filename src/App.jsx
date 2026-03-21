@@ -1,9 +1,12 @@
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import ProtectedRoute from "./components/layout/ProtectedRoute";
 import AdminRoute from "./components/layout/AdminRoute";
 import Home from "./pages/Home/Home";
-import Courses from "./pages/Courses";
+import Courses from "./pages/Courses/Courses";
+import CourseDetails from "./pages/Courses/CourseDetails";
+import Enroll from "./pages/Courses/Enroll";
 import Dashboard from "./pages/Dashboard";
 import Internship from "./pages/internship/Internship";
 import InternshipDetail from "./pages/internship/InternshipDetail"; 
@@ -34,6 +37,8 @@ function App() {
           <Route path="/workshop" element={<Workshop />} />
           <Route path="/workshop/:id" element={<WorkshopDetail />} />  
           <Route path="/courses" element={<Courses />} />
+          <Route path="/courses/:id" element={<CourseDetails />} />
+          <Route path="/enroll/:courseId" element={<Enroll />} />
           <Route path="/About" element={<About />} />
           <Route path="/Contact" element={<Contact />} />
 
