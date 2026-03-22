@@ -232,20 +232,20 @@ function Courses() {
             </div>
 
             <div className="max-w-3xl mx-auto">
-              <div className="mb-8 ">
+              <div className="mb-8">
                 <div className="flex items-center gap-4 bg-white/10 rounded-xl px-6 py-4 border border-light-border w-full">
-                  <Search className="w-6 h-6 text-white/70 shrink-0 " />
+                  <Search className="w-6 h-6 text-white/70 shrink-0" />
                   <input
                     type="text"
                     placeholder="Search courses..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="flex-1 bg-transparent outline-none text-white placeholder:text-white/60 text-lg w-full"
+                    className="flex-1 min-w-0 bg-transparent outline-none text-white placeholder:text-white/60 text-lg"
                   />
                   <button
                     type="button"
                     onClick={scrollToCourses}
-                    className="w-full sm:w-auto px-8 py-3 bg-light-ring rounded-xl text-light-accent-foreground hover:bg-light-accent/90 transition-colors font-medium whitespace-nowrap"
+                    className="shrink-0 px-4 py-2 sm:px-8 sm:py-3 bg-light-ring rounded-xl text-light-accent-foreground hover:bg-light-accent/90 transition-colors font-medium text-sm sm:text-base whitespace-nowrap"
                   >
                     Find Out
                   </button>
