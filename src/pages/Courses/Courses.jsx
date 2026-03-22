@@ -214,6 +214,9 @@ function Courses() {
       <section className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-light-hero to-light-hero-end dark:bg-gradient-to-b dark:from-dark-hero dark:to-dark-hero-end">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-8">
+            <span className="inline-flex items-center gap-2 text-[#C8A85A] text-sm font-medium mb-4 bg-white/10 px-4 py-1.5 rounded-full">
+  🔥 Special Learning Offer – Save up to 30% on selected courses
+</span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl text-white mb-6">
               Upgrade Your Skills with Expert-Led Courses
             </h1>
@@ -224,12 +227,6 @@ function Courses() {
               From development and design to marketing and data science, start
               learning today with industry-relevant content.
             </p>
-
-            <div className="inline-block bg-gradient-to-r from-[#C8A85A]/20 to-[#0E3B2E]/20 border border-[#C8A85A]/30 rounded-full px-6 py-3 mb-8">
-              <p className="text-[#C8A85A]">
-                🔥 Special Learning Offer – Save up to 30% on selected courses
-              </p>
-            </div>
 
             <div className="max-w-3xl mx-auto">
               <div className="mb-8">
@@ -294,18 +291,6 @@ function Courses() {
         ref={coursesSectionRef}
         className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-12"
       >
-        <div className="mb-8">
-          <div className="flex items-center gap-4 bg-[var(--card)] rounded-xl px-6 py-4 border border-[var(--border)]">
-            <Search className="w-6 h-6 text-[var(--muted-foreground)]" />
-            <input
-              type="text"
-              placeholder="Search courses..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="flex-1 bg-transparent outline-none text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] text-lg"
-            />
-          </div>
-        </div>
         <div className="flex flex-col gap-4 mb-8">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-sm text-[var(--muted-foreground)]">
