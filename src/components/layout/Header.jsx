@@ -200,13 +200,13 @@ const Header = () => {
           ) : (
             <>
               <div onClick={() => navigate("/register")}>
-                <Button color="green" size="sm">
+                <Button size="sm" className="bg-light-accent text-light-accent-foreground hover:bg-[#C8A85A]/90 border-0 font-semibold transition-all duration-300">
                   GET STARTED
                 </Button>
               </div>
 
               <div onClick={() => navigate("/login")}>
-                <Button color="" size="sm" className="bg-light-accent text-black border-light-accent hover:bg-[#C8A85A]/90 transition-all duration-300">
+                <Button variant="outlined" size="sm" className="border border-light-accent text-light-accent hover:bg-light-accent hover:text-light-accent-foreground transition-all duration-300 font-semibold">
                   LOG IN
                 </Button>
               </div>
