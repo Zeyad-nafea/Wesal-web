@@ -231,20 +231,19 @@ function Courses() {
               </p>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-4">
-              <button
-                onClick={scrollToCourses}
-                className="bg-[#C8A85A] text-[#0a0a0a] px-8 py-3 rounded-lg hover:bg-[#C8A85A]/90 transition-all duration-300"
-              >
-                Browse Courses
-              </button>
-
-              <button
-                onClick={scrollToCourses}
-                className="bg-[var(--card)] text-[var(--foreground)] px-8 py-3 rounded-lg border border-[var(--border)] hover:bg-[var(--secondary)] transition-all duration-300"
-              >
-                Start Learning
-              </button>
+            <div className="">
+              <div className="mb-8">
+                <div className="flex items-center gap-4 bg-[var(--card)] rounded-xl px-6 py-4 border border-[var(--border)]">
+                  <Search className="w-6 h-6 text-[var(--muted-foreground)]" />
+                  <input
+                    type="text"
+                    placeholder="Search courses..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="flex-1 bg-transparent outline-none text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] text-lg"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -300,7 +299,6 @@ function Courses() {
             />
           </div>
         </div>
-
         <div className="flex flex-col gap-4 mb-8">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-sm text-[var(--muted-foreground)]">

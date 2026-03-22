@@ -206,7 +206,7 @@ const Header = () => {
               </div>
 
               <div onClick={() => navigate("/login")}>
-                <Button color="amber" size="sm">
+                <Button color="" size="sm" className="bg-light-accent text-black border-light-accent hover:bg-[#C8A85A]/90 transition-all duration-300">
                   LOG IN
                 </Button>
               </div>
