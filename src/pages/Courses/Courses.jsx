@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 function Courses() {
   const [selectedLevel, setSelectedLevel] = useState("all");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [offersOnly, setOffersOnly] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
   const coursesSectionRef = useRef(null);
@@ -23,6 +24,8 @@ function Courses() {
       rating: 4.8,
       lessons: 24,
       instructor: "Sarah Ahmed",
+      discount: "30% OFF",
+      isOnOffer: true,
       learn: [
         "SEO fundamentals",
         "Social media marketing",
@@ -42,6 +45,8 @@ function Courses() {
       rating: 4.9,
       lessons: 32,
       instructor: "Mohamed Ali",
+      discount: "25% OFF",
+      isOnOffer: true,
       learn: [
         "Build React interfaces",
         "Create REST APIs",
@@ -61,6 +66,7 @@ function Courses() {
       rating: 4.7,
       lessons: 28,
       instructor: "Nour Hassan",
+      isOnOffer: false,
       learn: [
         "Python for analysis",
         "Data visualization",
@@ -80,6 +86,8 @@ function Courses() {
       rating: 4.8,
       lessons: 20,
       instructor: "Mariam Adel",
+      discount: "20% OFF",
+      isOnOffer: true,
       learn: [
         "Design thinking",
         "Wireframing",
@@ -99,6 +107,7 @@ function Courses() {
       rating: 4.6,
       lessons: 22,
       instructor: "Omar Tarek",
+      isOnOffer: false,
       learn: [
         "Advanced JavaScript",
         "Async patterns",
@@ -118,6 +127,8 @@ function Courses() {
       rating: 4.5,
       lessons: 18,
       instructor: "Laila Mostafa",
+      discount: "15% OFF",
+      isOnOffer: true,
       learn: [
         "Business KPIs",
         "Data-driven decisions",
@@ -137,6 +148,7 @@ function Courses() {
       rating: 4.7,
       lessons: 26,
       instructor: "Ahmed Samir",
+      isOnOffer: false,
       learn: [
         "React Native basics",
         "Navigation",
@@ -156,6 +168,8 @@ function Courses() {
       rating: 4.6,
       lessons: 21,
       instructor: "Youssef Khaled",
+      discount: "35% OFF",
+      isOnOffer: true,
       learn: [
         "Cloud fundamentals",
         "Deployment basics",
@@ -193,12 +207,14 @@ function Courses() {
     });
   };
 
-  const filteredCourses = courses.filter((course) => {
+  const matchesFilters = (course) => {
     const levelMatch =
       selectedLevel === "all" || course.level === selectedLevel;
 
     const categoryMatch =
       selectedCategory === "all" || course.category === selectedCategory;
+
+    const offerMatch = !offersOnly || course.isOnOffer;
 
     const searchMatch =
       course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -206,29 +222,48 @@ function Courses() {
       course.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
       course.level.toLowerCase().includes(searchTerm.toLowerCase());
 
-    return levelMatch && categoryMatch && searchMatch;
-  });
+    return levelMatch && categoryMatch && offerMatch && searchMatch;
+  };
+
+  const filteredCourses = courses.filter(matchesFilters);
 
   return (
     <div className="min-h-screen bg-[var(--background)]">
-      <section className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-[#0E3B2E]/10 via-transparent to-[#C8A85A]/5">
+      <section className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-light-hero to-light-hero-end dark:from-dark-hero dark:to-dark-hero-end">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-8">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl text-[var(--foreground)] mb-6">
-              Upgrade Your Skills with Expert-Led Courses
-            </h1>
+           <h1 className="text-4xl sm:text-5xl lg:text-6xl text-white mb-6">
+  Upgrade Your{" "}
+  <span className="bg-gradient-to-r from-[#C8A85A] to-[#EAD7A5] bg-clip-text text-transparent">
+    Skills
+  </span>{" "}
+  with Expert-Led Courses
+</h1>
 
-            <p className="text-lg sm:text-xl text-[var(--muted-foreground)] max-w-4xl mx-auto leading-relaxed mb-8">
+            <p className="text-lg sm:text-xl text-white/80 max-w-4xl mx-auto leading-relaxed mb-8">
               Explore a wide range of professional courses designed to help you
               learn new skills, advance your career, and achieve your goals.
               From development and design to marketing and data science, start
               learning today with industry-relevant content.
             </p>
 
-            <div className="inline-block bg-gradient-to-r from-[#C8A85A]/20 to-[#0E3B2E]/20 border border-[#C8A85A]/30 rounded-full px-6 py-3 mb-8">
-              <p className="text-[#C8A85A]">
+            <div className="inline-block bg-gradient-to-r from-[#C8A85A]/15 to-white/10 border border-[#C8A85A]/25 rounded-full px-6 py-3 mb-8">
+              <p className="text-[#E8E2D6]">
                 🔥 Special Learning Offer – Save up to 30% on selected courses
               </p>
+            </div>
+
+            <div className="max-w-5xl mx-auto mb-8">
+              <div className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-2xl px-6 py-5 border border-white/20 shadow-[0_10px_40px_rgba(0,0,0,0.12)]">
+                <Search className="w-6 h-6 text-white/70" />
+                <input
+                  type="text"
+                  placeholder="Search by course title or category..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="flex-1 bg-transparent outline-none text-white placeholder:text-white/60 text-lg"
+                />
+              </div>
             </div>
 
             <div className="flex flex-wrap justify-center gap-4">
@@ -238,19 +273,11 @@ function Courses() {
               >
                 Browse Courses
               </button>
-
-              <button
-                onClick={scrollToCourses}
-                className="bg-[var(--card)] text-[var(--foreground)] px-8 py-3 rounded-lg border border-[var(--border)] hover:bg-[var(--secondary)] transition-all duration-300"
-              >
-                Start Learning
-              </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Most Popular */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-10">
         <div className="flex items-center gap-3 mb-6">
           <Flame className="w-6 h-6 text-[#C8A85A]" />
@@ -264,17 +291,37 @@ function Courses() {
             <div
               key={course.id}
               onClick={() => handleOpenCourse(course)}
-              className="group bg-[var(--card)] rounded-xl border border-[var(--border)] p-6 cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:border-[#C8A85A]/40 hover:shadow-[0_20px_50px_rgba(200,168,90,0.12)]"
+              className="relative group bg-[var(--card)] rounded-[28px] border border-[var(--border)] p-6 cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:border-[#C8A85A]/35 hover:shadow-[0_20px_50px_rgba(200,168,90,0.10)] overflow-hidden"
             >
-              <span className="inline-block text-xs px-3 py-1 bg-[#C8A85A]/20 text-[#C8A85A] rounded-full mb-4">
-                {course.category}
-              </span>
+              {course.isOnOffer && (
+                <div className="absolute top-0 right-0 w-32 h-32 pointer-events-none">
+                  <div className="absolute top-7 -right-10 rotate-45 bg-[#D6B24F] text-white text-sm font-semibold shadow-[0_10px_30px_rgba(214,178,79,0.22)] w-44 text-center py-2 border-y border-white/20">
+                    <span className="inline-flex items-center gap-1">
+                      <Flame className="w-3.5 h-3.5" />
+                      {course.discount}
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              <div className="flex items-center gap-2 mb-4 flex-wrap pr-20">
+                <span className="inline-block text-xs px-3 py-1 bg-[#C8A85A]/20 text-[#C8A85A] rounded-full">
+                  {course.category}
+                </span>
+
+                <span className="text-xs px-3 py-1 bg-[var(--secondary)] text-[var(--muted-foreground)] rounded-full border border-[var(--border)]">
+                  {course.level}
+                </span>
+              </div>
+
               <h3 className="text-xl text-[var(--foreground)] mb-3 group-hover:text-[#C8A85A] transition-colors">
                 {course.title}
               </h3>
+
               <p className="text-sm text-[var(--muted-foreground)] mb-4 line-clamp-2">
                 {course.description}
               </p>
+
               <div className="flex items-center justify-between text-sm text-[var(--muted-foreground)]">
                 <span>{course.rating} ★</span>
                 <span>{course.enrolled.toLocaleString()} enrolled</span>
@@ -339,6 +386,34 @@ function Courses() {
               </button>
             ))}
           </div>
+
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-sm text-[var(--muted-foreground)]">
+              Offers:
+            </span>
+
+            <button
+              onClick={() => setOffersOnly(false)}
+              className={`px-4 py-2 rounded-lg text-sm transition-all duration-300 ${
+                !offersOnly
+                  ? "bg-[#C8A85A] text-[#0a0a0a]"
+                  : "bg-[var(--card)] text-[var(--muted-foreground)] hover:bg-[var(--secondary)] border border-[var(--border)]"
+              }`}
+            >
+              All Courses
+            </button>
+
+            <button
+              onClick={() => setOffersOnly(true)}
+              className={`px-4 py-2 rounded-lg text-sm transition-all duration-300 ${
+                offersOnly
+                  ? "bg-[#C8A85A] text-[#0a0a0a]"
+                  : "bg-[var(--card)] text-[var(--muted-foreground)] hover:bg-[var(--secondary)] border border-[var(--border)]"
+              }`}
+            >
+              Offers Only
+            </button>
+          </div>
         </div>
 
         <div className="mb-6">
@@ -353,10 +428,21 @@ function Courses() {
             <div
               key={course.id}
               onClick={() => handleOpenCourse(course)}
-              className="group bg-[var(--card)] rounded-xl overflow-hidden cursor-pointer border border-[var(--border)] transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] hover:border-[#C8A85A]/40 hover:shadow-[0_20px_50px_rgba(200,168,90,0.12)] hover:bg-[var(--secondary)] h-full"
+              className="relative group bg-[var(--card)] rounded-[28px] overflow-hidden cursor-pointer border border-[var(--border)] transition-all duration-300 hover:-translate-y-2 hover:scale-[1.01] hover:border-[#C8A85A]/35 hover:shadow-[0_20px_50px_rgba(200,168,90,0.10)] hover:bg-[var(--secondary)] h-full"
             >
+              {course.isOnOffer && (
+                <div className="absolute top-0 right-0 w-32 h-32 pointer-events-none z-20">
+                  <div className="absolute top-7 -right-10 rotate-45 bg-[#D6B24F] text-white text-sm font-semibold shadow-[0_10px_30px_rgba(214,178,79,0.22)] w-44 text-center py-2 border-y border-white/20">
+                    <span className="inline-flex items-center gap-1">
+                      <Flame className="w-3.5 h-3.5" />
+                      {course.discount}
+                    </span>
+                  </div>
+                </div>
+              )}
+
               <div className="p-6 flex flex-col h-full">
-                <div className="flex items-center gap-2 mb-4">
+                <div className="flex items-center gap-2 mb-4 flex-wrap pr-20">
                   <span className="text-xs px-3 py-1 bg-[#C8A85A]/20 text-[#C8A85A] rounded-full transition-all duration-300 group-hover:bg-[#C8A85A]/25">
                     {course.category}
                   </span>
@@ -391,7 +477,7 @@ function Courses() {
                     e.stopPropagation();
                     handleOpenCourse(course);
                   }}
-                  className="mt-auto w-full bg-[#0E3B2E] text-[#E8E2D6] py-3 rounded-lg transition-all duration-300 group-hover:bg-[#146147] group-hover:shadow-[0_10px_30px_rgba(14,59,46,0.35)]"
+                  className="mt-auto w-full bg-[#0E3B2E] text-[#E8E2D6] py-3 rounded-lg transition-all duration-300 group-hover:bg-[#146147] group-hover:shadow-[0_10px_30px_rgba(14,59,46,0.30)]"
                 >
                   View Details
                 </button>
