@@ -132,7 +132,7 @@ function NavList({ closeMenu }) {
 
       <ListItem
         onClick={() => handleNav("/Contact")}
-        className="flex items-center gap-2 py-2 pr-4 font-medium text-light-cream cursor-pointer whitespace-nowrap"
+        className="flex items-center gap-2 py-3 pr-4 font-medium text-light-cream cursor-pointer whitespace-nowrap text-start"
       >
         Contact us
       </ListItem>
@@ -200,7 +200,7 @@ const Header = () => {
           ) : (
             <>
               <div onClick={() => navigate("/register")}>
-                <Button size="sm" className="bg-light-accent text-light-accent-foreground hover:bg-[#C8A85A]/90 border-0 font-semibold transition-all duration-300">
+                <Button size="sm" className="bg-light-accent text-light-accent-foreground hover:bg-light-accent/90 border-0 font-semibold transition-all duration-300">
                   GET STARTED
                 </Button>
               </div>

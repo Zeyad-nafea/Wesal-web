@@ -15,7 +15,7 @@ import Profile from "./pages/Profile";
 import Workshop from "./pages/workshop/Workshop";
 import WorkshopDetail from "./pages/workshop/WorkshopDetail";
 import Login from "./pages/Auth/Login";
-import Register from "./pages/Auth/Siginup";
+import Register from "./pages/Auth/Register";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact";
 import ScrollToTop from "./components/Scroll up/Scroll";

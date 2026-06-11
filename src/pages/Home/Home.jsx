@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import * as motion from "motion/react-client";
 import {
   Search,
   BookOpen,
@@ -75,7 +76,10 @@ const trendingOpportunities = [
     category: "Course",
   },
 ];
-
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
 function Home() {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
@@ -98,7 +102,12 @@ function Home() {
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-light-hero to-light-hero-end dark:bg-gradient-to-b dark:from-dark-hero dark:to-dark-hero-end p-7 pb-32 ">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="text-center max-w-4xl mx-auto mb-12">
+          <motion.div
+            className="text-center max-w-4xl mx-auto mb-12"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+          animate="visible">
             <h1 className="text-5xl sm:text-6xl lg:text-7xl mb-6 text-white leading-tight">
               Connect, Learn, and{" "}
               <span className="text-light-accent">Grow</span> With WESAL
@@ -107,7 +116,7 @@ function Home() {
               Your gateway to premium courses, expert workshops, and
               career-launching internships.
             </p>
-          </div>
+          </motion.div>
           {/* search bar*/}
           <div className="max-w-3xl mx-auto">
             <form
@@ -136,7 +145,11 @@ function Home() {
       </section>
       <section className="bg-light-background dark:bg-dark-background py-16 relative z-10 -mt-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+          animate="visible">
             {categories.map((category) => (
               <div
                 key={category.id}
@@ -173,7 +186,7 @@ function Home() {
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
       <section className="bg-light-background dark:bg-dark-background">
