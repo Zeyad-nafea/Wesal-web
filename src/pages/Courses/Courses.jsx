@@ -229,50 +229,43 @@ function Courses() {
 
   return (
     <div className="min-h-screen bg-[var(--background)]">
-      <section className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-light-hero to-light-hero-end dark:from-dark-hero dark:to-dark-hero-end">
+      <section className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-light-hero to-light-hero-end dark:bg-gradient-to-b dark:from-dark-hero dark:to-dark-hero-end">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-8">
-           <h1 className="text-4xl sm:text-5xl lg:text-6xl text-white mb-6">
-  Upgrade Your{" "}
-  <span className="bg-gradient-to-r from-[#C8A85A] to-[#EAD7A5] bg-clip-text text-transparent">
-    Skills
-  </span>{" "}
-  with Expert-Led Courses
-</h1>
+            <span className="inline-flex items-center gap-2 text-[#C8A85A] text-sm font-medium mb-4 bg-white/10 px-4 py-1.5 rounded-full">
+  🔥 Special Learning Offer – Save up to 30% on selected courses
+</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl text-white mb-6">
+              Upgrade Your Skills with Expert-Led Courses
+            </h1>
 
-            <p className="text-lg sm:text-xl text-white/80 max-w-4xl mx-auto leading-relaxed mb-8">
+            <p className="text-lg sm:text-xl text-light-cream max-w-4xl mx-auto leading-relaxed mb-8">
               Explore a wide range of professional courses designed to help you
               learn new skills, advance your career, and achieve your goals.
               From development and design to marketing and data science, start
               learning today with industry-relevant content.
             </p>
 
-            <div className="inline-block bg-gradient-to-r from-[#C8A85A]/15 to-white/10 border border-[#C8A85A]/25 rounded-full px-6 py-3 mb-8">
-              <p className="text-[#E8E2D6]">
-                🔥 Special Learning Offer – Save up to 30% on selected courses
-              </p>
-            </div>
-
-            <div className="max-w-5xl mx-auto mb-8">
-              <div className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-2xl px-6 py-5 border border-white/20 shadow-[0_10px_40px_rgba(0,0,0,0.12)]">
-                <Search className="w-6 h-6 text-white/70" />
-                <input
-                  type="text"
-                  placeholder="Search by course title or category..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="flex-1 bg-transparent outline-none text-white placeholder:text-white/60 text-lg"
-                />
+            <div className="max-w-3xl mx-auto">
+              <div className="mb-8">
+                <div className="flex items-center gap-4 bg-white/10 rounded-xl px-6 py-4 border border-light-border w-full">
+                  <Search className="w-6 h-6 text-white/70 shrink-0" />
+                  <input
+                    type="text"
+                    placeholder="Search courses..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="flex-1 min-w-0 bg-transparent outline-none text-white placeholder:text-white/60 text-lg"
+                  />
+                  <button
+                    type="button"
+                    onClick={scrollToCourses}
+                    className="shrink-0 px-4 py-2 sm:px-8 sm:py-3 bg-light-ring rounded-xl text-light-accent-foreground hover:bg-light-accent/90 transition-colors font-medium text-sm sm:text-base whitespace-nowrap"
+                  >
+                    Find Out
+                  </button>
+                </div>
               </div>
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-4">
-              <button
-                onClick={scrollToCourses}
-                className="bg-[#C8A85A] text-[#0a0a0a] px-8 py-3 rounded-lg hover:bg-[#C8A85A]/90 transition-all duration-300"
-              >
-                Browse Courses
-              </button>
             </div>
           </div>
         </div>
@@ -335,19 +328,6 @@ function Courses() {
         ref={coursesSectionRef}
         className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-12"
       >
-        <div className="mb-8">
-          <div className="flex items-center gap-4 bg-[var(--card)] rounded-xl px-6 py-4 border border-[var(--border)]">
-            <Search className="w-6 h-6 text-[var(--muted-foreground)]" />
-            <input
-              type="text"
-              placeholder="Search courses..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="flex-1 bg-transparent outline-none text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] text-lg"
-            />
-          </div>
-        </div>
-
         <div className="flex flex-col gap-4 mb-8">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-sm text-[var(--muted-foreground)]">
