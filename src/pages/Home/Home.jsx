@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as motion from "motion/react-client";
+
 import {
   Search,
   BookOpen,
@@ -10,6 +11,7 @@ import {
   Signal,
   ArrowRight,
 } from "lucide-react";
+import { Button } from "@material-tailwind/react"
 const categories = [
   {
     id: "courses",
@@ -107,7 +109,8 @@ function Home() {
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
-          animate="visible">
+            animate="visible"
+          >
             <h1 className="text-5xl sm:text-6xl lg:text-7xl mb-6 text-white leading-tight">
               Connect, Learn, and{" "}
               <span className="text-light-accent">Grow</span> With WESAL
@@ -145,11 +148,13 @@ function Home() {
       </section>
       <section className="bg-light-background dark:bg-dark-background py-16 relative z-10 -mt-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-6"
-          variants={fadeUp}
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            variants={fadeUp}
             initial="hidden"
             whileInView="visible"
-          animate="visible">
+            animate="visible"
+          >
             {categories.map((category) => (
               <div
                 key={category.id}
@@ -236,6 +241,32 @@ function Home() {
         </div>
       </section>
       <div className="py-10 dark:bg-dark-background bg-light-background" />
+      <section className="py-20 bg-light-background dark:bg-dark-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="bg-gradient-to-b from-light-hero to-light-hero-end dark:bg-gradient-to-b dark:from-dark-hero dark:to-dark-hero-end p-12 rounded-xl text-center">
+            <h2 className="text-3xl sm:text-4xl text-light-secondary mb-4">
+              Join Our Community
+            </h2>
+            <p className="text-light-cream/90 mb-8 max-w-2xl mx-auto text-lg">
+              Start your learning journey today and connect with thousands of
+              students and professionals.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link to="/register">
+                <Button color="amber">Get Started</Button>
+              </Link>
+              <Link to="/contact">
+                <Button
+                  variant="outlined"
+                  className="rounded-full text-white border-white"
+                >
+                  Contact Us
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

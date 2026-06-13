@@ -1,12 +1,26 @@
 import React from "react";
 import { FaSun, FaMoon } from "react-icons/fa6";
 import {
-  Navbar, Collapse, Typography, Button, IconButton,
-  List, ListItem, Menu, MenuHandler, MenuList, MenuItem, Avatar,
+  Navbar,
+  Collapse,
+  Typography,
+  Button,
+  IconButton,
+  List,
+  ListItem,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Avatar,
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import {
-  Cog6ToothIcon, InboxArrowDownIcon, LifebuoyIcon, PowerIcon, UserCircleIcon,
+  Cog6ToothIcon,
+  InboxArrowDownIcon,
+  LifebuoyIcon,
+  PowerIcon,
+  UserCircleIcon,
 } from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
@@ -38,7 +52,11 @@ function AvatarWithUserDropdown() {
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
       <MenuHandler>
-        <Button variant="text" color="blue-gray" className="flex items-center rounded-full p-0">
+        <Button
+          variant="text"
+          color="blue-gray"
+          className="flex items-center rounded-full p-0"
+        >
           <Avatar
             variant="circular"
             size="md"
@@ -165,8 +183,9 @@ const Header = () => {
   const { theme, mode } = useTheme();
 
   React.useEffect(() => {
-    window.addEventListener("resize", () =>
-      window.innerWidth >= 960 && setOpenNav(false)
+    window.addEventListener(
+      "resize",
+      () => window.innerWidth >= 960 && setOpenNav(false),
     );
   }, []);
 
@@ -200,18 +219,26 @@ const Header = () => {
           ) : (
             <>
               <div onClick={() => navigate("/register")}>
-                <Button size="sm" color="green" className=" text-white hover:bg-light-accent/90 border-0 font-semibold transition-all duration-300">
+                <Button
+                  size="sm"
+                  color="green"
+                  className=" text-white hover:bg-light-accent/90 border-0 font-semibold transition-all duration-300"
+                >
                   GET STARTED
                 </Button>
               </div>
               <div onClick={() => navigate("/login")}>
-                <Button  size="sm" color="amber" className="border border-light-accent text-light-dark hover:bg-light-accent hover:text-light-accent-foreground transition-all duration-300 font-semibold">
+                <Button
+                  size="sm"
+                  color="amber"
+                  className="border border-light-accent text-light-dark hover:bg-light-accent hover:text-light-accent-foreground transition-all duration-300 font-semibold"
+                >
                   LOG IN
                 </Button>
               </div>
             </>
           )}
-        </div> 
+        </div>
 
         <IconButton
           variant="text"
