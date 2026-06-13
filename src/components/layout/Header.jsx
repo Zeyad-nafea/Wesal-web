@@ -1,5 +1,6 @@
 import React from "react";
 import { FaSun, FaMoon } from "react-icons/fa6";
+import { useTranslation } from "react-i18next";
 import {
   Navbar,
   Collapse,
@@ -104,6 +105,7 @@ function AvatarWithUserDropdown() {
 function NavList({ closeMenu }) {
   const { isAuthenticated, isAdmin } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleNav = (path) => {
     navigate(path);
@@ -116,43 +118,42 @@ function NavList({ closeMenu }) {
         onClick={() => handleNav("/")}
         className="flex items-center gap-2 py-2 pr-4 font-medium text-light-cream cursor-pointer"
       >
-        Home
+        {t("Home")}
       </ListItem>
 
       <ListItem
         onClick={() => handleNav("/courses")}
         className="flex items-center gap-2 py-2 pr-4 font-medium text-light-cream cursor-pointer"
       >
-        Courses
+        {t("Courses")}
       </ListItem>
 
       <ListItem
         onClick={() => handleNav("/internship")}
         className="flex items-center gap-2 py-2 pr-4 font-medium text-light-cream cursor-pointer"
       >
-        Internship
+        {t("Internship")}
       </ListItem>
 
       <ListItem
         onClick={() => handleNav("/workshop")}
         className="flex items-center gap-2 py-2 pr-4 font-medium text-light-cream cursor-pointer"
       >
-        Workshop
+        {t("Workshop")}
       </ListItem>
 
-      {/* FIXED HERE 👇 */}
       <ListItem
         onClick={() => handleNav("/About")}
         className="flex items-center gap-2 py-2 pr-4 font-medium text-light-cream cursor-pointer whitespace-nowrap"
       >
-        About Us
+        {t("About_Us")}
       </ListItem>
 
       <ListItem
         onClick={() => handleNav("/Contact")}
         className="flex items-center gap-2 py-3 pr-4 font-medium text-light-cream cursor-pointer whitespace-nowrap text-start"
       >
-        Contact us
+        {t("Contact_us")}
       </ListItem>
 
       {isAuthenticated && (
@@ -160,7 +161,7 @@ function NavList({ closeMenu }) {
           onClick={() => handleNav("/profile")}
           className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900 cursor-pointer"
         >
-          Profile
+          {t("nav_profile")}
         </ListItem>
       )}
 
@@ -169,7 +170,7 @@ function NavList({ closeMenu }) {
           onClick={() => handleNav("/dashboard")}
           className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900 cursor-pointer"
         >
-          Dashboard
+          {t("nav_dashboard")}
         </ListItem>
       )}
     </List>
@@ -181,11 +182,19 @@ const Header = () => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const { theme, mode } = useTheme();
+  const { i18n } = useTranslation();
+  const { t } = useTranslation();
+
+  const isAr = i18n.language === "ar";
+
+  const toggleLanguage = () => {
+    i18n.changeLanguage(isAr ? "en" : "ar");
+  };
 
   React.useEffect(() => {
     window.addEventListener(
       "resize",
-      () => window.innerWidth >= 960 && setOpenNav(false),
+      () => window.innerWidth >= 960 && setOpenNav(false)
     );
   }, []);
 
@@ -201,6 +210,16 @@ const Header = () => {
         </div>
 
         <div className="hidden gap-2 lg:flex items-center">
+          {/* ✅ زرار اللغة - Desktop */}
+          <Button
+            size="sm"
+            variant="text"
+            onClick={toggleLanguage}
+            className="text-light-cream hover:bg-white/10 font-semibold"
+          >
+            {isAr ? "EN" : "عربي"}
+          </Button>
+
           <IconButton
             size="sm"
             variant="text"
@@ -222,9 +241,9 @@ const Header = () => {
                 <Button
                   size="sm"
                   color="green"
-                  className=" text-white hover:bg-light-accent/90 border-0 font-semibold transition-all duration-300"
+                  className="text-white hover:bg-light-accent/90 border-0 font-semibold transition-all duration-300"
                 >
-                  GET STARTED
+                  {t("register")}
                 </Button>
               </div>
               <div onClick={() => navigate("/login")}>
@@ -233,7 +252,7 @@ const Header = () => {
                   color="amber"
                   className="border border-light-accent text-light-dark hover:bg-light-accent hover:text-light-accent-foreground transition-all duration-300 font-semibold"
                 >
-                  LOG IN
+                  {t("login")}
                 </Button>
               </div>
             </>
@@ -256,22 +275,33 @@ const Header = () => {
       <Collapse open={openNav}>
         <NavList closeMenu={() => setOpenNav(false)} />
 
-        <Button
-          size="xl"
-          variant="text"
-          onClick={mode}
-          className="text-light-cream hover:bg-white/10 rounded-full"
-        >
-          {theme === "dark" ? (
-            <span className="flex gap-2">
-              <FaSun className="h-4 w-4" /> Light
-            </span>
-          ) : (
-            <span className="flex gap-2">
-              <FaMoon className="h-4 w-4" /> Dark
-            </span>
-          )}
-        </Button>
+        <div className="flex gap-2">
+          <Button
+            size="xl"
+            variant="text"
+            onClick={mode}
+            className="text-light-cream hover:bg-white/10 rounded-full"
+          >
+            {theme === "dark" ? (
+              <span className="flex gap-2">
+                <FaSun className="h-4 w-4" /> Light
+              </span>
+            ) : (
+              <span className="flex gap-2">
+                <FaMoon className="h-4 w-4" /> Dark
+              </span>
+            )}
+          </Button>
+
+          <Button
+            size="xl"
+            variant="text"
+            onClick={toggleLanguage}
+            className="text-light-cream hover:bg-white/10 rounded-full font-semibold"
+          >
+            {isAr ? "English" : "عربي"}
+          </Button>
+        </div>
 
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
           {isAuthenticated ? (
@@ -286,7 +316,7 @@ const Header = () => {
                 }}
               >
                 <Button color="green" size="sm" fullWidth>
-                  Get Started
+                  {t("register")}
                 </Button>
               </div>
 
@@ -298,7 +328,7 @@ const Header = () => {
                 }}
               >
                 <Button color="amber" size="sm" fullWidth>
-                  Log In
+                  {t("login")}
                 </Button>
               </div>
             </>

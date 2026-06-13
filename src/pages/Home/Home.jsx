@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as motion from "motion/react-client";
-
+import { useTranslation } from "react-i18next";
 import {
   Search,
   BookOpen,
@@ -11,73 +11,9 @@ import {
   Signal,
   ArrowRight,
 } from "lucide-react";
-import { Button } from "@material-tailwind/react"
-const categories = [
-  {
-    id: "courses",
-    title: "Courses",
-    label: "ACADEMIC",
-    icon: <BookOpen className="w-10 h-10" />,
-    description:
-      "Explore a wide range of academic and professional courses designed to enhance your skills and knowledge base.",
-    count: "120+ Available",
-    link: "/courses",
-    linkText: "Browse Courses",
-  },
-  {
-    id: "workshops",
-    title: "Workshops",
-    label: "PRACTICAL",
-    icon: <Wrench className="w-10 h-10" />,
-    description:
-      "Join hands-on workshops led by industry experts. Learn by doing and gain practical experience in real-time.",
-    count: "45 Upcoming",
-    link: "/workshop",
-    linkText: "View Schedule",
-  },
-  {
-    id: "internships",
-    title: "Internships",
-    label: "CAREER",
-    icon: <Briefcase className="w-10 h-10" />,
-    description:
-      "Kickstart your career with internships at top companies. Gain valuable work experience and build your network.",
-    count: "80+ Openings",
-    link: "/internship",
-    linkText: "Find Internships",
-  },
-];
+import { Button } from "@material-tailwind/react";
 
-const trendingOpportunities = [
-  {
-    id: "1",
-    title: "Digital Marketing Mastery 2024",
-    duration: "8 Weeks",
-    level: "Beginner",
-    category: "Course",
-  },
-  {
-    id: "2",
-    title: "UX/UI Design Thinking Sprint",
-    duration: "Oct 25",
-    level: "Urban",
-    category: "Workshop",
-  },
-  {
-    id: "3",
-    title: "Junior Frontend Developer",
-    company: "TechCorp",
-    location: "Remote",
-    category: "Internship",
-  },
-  {
-    id: "4",
-    title: "Data Science Fundamentals",
-    duration: "12 Weeks",
-    level: "Intermediate",
-    category: "Course",
-  },
-];
+
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -85,6 +21,40 @@ const fadeUp = {
 function Home() {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
+  const { t } = useTranslation();
+  const categories = [
+    {
+      id: "courses",
+      title: t("cards1_title"),
+      label: t("cards1"),
+      icon: <BookOpen className="w-10 h-10" />,
+      description: t("cards1_content"),
+      count: t("cards1_no"),
+      link: "/courses",
+      linkText: t("cards1_button"),
+    },
+    {
+      id: "workshops",
+      title: t("cards2_title"),
+      label: t("cards2"),
+      icon: <Wrench className="w-10 h-10" />,
+      description: t("cards2_content"),
+      count: t("cards2_no"),
+      link: "/workshop",
+      linkText: t("cards2_button"),
+    },
+    {
+      id: "internships",
+      title: t("cards3_title"),
+      label: t("cards3"),
+      icon: <Briefcase className="w-10 h-10" />,
+      description:
+        t("cards3_content"),
+      count: t("cards3_no"),
+      link: "/internship",
+      linkText: t("cards3_button"),
+    },
+  ];
   const handleSearch = (e) => {
     e.preventDefault();
     if (!query.trim()) return;
@@ -99,6 +69,36 @@ function Home() {
       navigate(`/courses?search=${encodeURIComponent(query)}`);
     }
   };
+  const trendingOpportunities = [
+  {
+    id: "1",
+    title: t("cards4_title"),
+    duration: t("cards4_no"),
+    level: t("cards4_level"),
+    category: t("cards4"),
+  },
+  {
+    id: "2",
+    title: t("cards5_title"),
+    duration: t("cards5_no"),
+    level: t("cards5_level"),
+    category: t("cards5"),
+  },
+  {
+    id: "3",
+    title: t("cards6_title"),
+    company: "TechCorp",
+    location: t("cards6_level"),
+    category: t("cards6"),
+  },
+  {
+    id: "4",
+    title: t("cards7_title"),
+    duration:t("cards7_no"),
+    level: t("cards7_level"),
+    category: t("cards7"),
+  },
+];
   return (
     <div className="">
       {/* Hero Section */}
@@ -112,12 +112,11 @@ function Home() {
             animate="visible"
           >
             <h1 className="text-5xl sm:text-6xl lg:text-7xl mb-6 text-white leading-tight">
-              Connect, Learn, and{" "}
-              <span className="text-light-accent">Grow</span> With WESAL
+              {t("hero")}{" "}
+              <span className="text-light-accent">{t("hero_high")}</span>{t("hero2")}
             </h1>
             <p className="text-xl max-w-2xl mx-auto text-light-cream">
-              Your gateway to premium courses, expert workshops, and
-              career-launching internships.
+              {t("subtitle")}
             </p>
           </motion.div>
           {/* search bar*/}
@@ -132,7 +131,7 @@ function Home() {
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Search for courses, workshops, or internships..."
+                  placeholder={t("search")}
                   className="flex-1 bg-transparent outline-none text-white placeholder:text-white/60 text-lg w-full"
                 />
               </div>
@@ -140,7 +139,7 @@ function Home() {
                 type="submit"
                 className="w-full sm:w-auto px-8 py-3 bg-light-ring rounded-xl text-light-accent-foreground hover:bg-light-accent/90 transition-colors font-medium whitespace-nowrap"
               >
-                Find Out
+                {t("search_button")}
               </button>
             </form>
           </div>
@@ -184,8 +183,8 @@ function Home() {
                       to={category.link}
                       className="flex items-center gap-2 hover:gap-3 transition-all text-light-accent"
                     >
-                      <span>{category.linkText}</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <span>{category.linkText}{t("Arrow")}</span>
+                      {/* <ArrowRight className="w-4 h-4" /> */}
                     </Link>
                   </div>
                 </div>
@@ -198,14 +197,14 @@ function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex items-center justify-between mb-10">
             <h2 className="text-3xl text-light-foreground dark:text-dark-foreground">
-              Trending Opportunities
+              {t("Trending Opportunities")}
             </h2>
             <Link
               to="/courses"
               className="flex items-center gap-2 text-light-accent hover:gap-3 transition-all"
             >
-              <span>View ALL</span>
-              <ArrowRight className="w-5 h-5" />
+              <span>{t("view")}{t("Arrow")}</span>
+              {/* <ArrowRight className="w-5 h-5" /> */}
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -245,23 +244,14 @@ function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="bg-gradient-to-b from-light-hero to-light-hero-end dark:bg-gradient-to-b dark:from-dark-hero dark:to-dark-hero-end p-12 rounded-xl text-center">
             <h2 className="text-3xl sm:text-4xl text-light-secondary mb-4">
-              Join Our Community
+              {t("footer_home")}
             </h2>
             <p className="text-light-cream/90 mb-8 max-w-2xl mx-auto text-lg">
-              Start your learning journey today and connect with thousands of
-              students and professionals.
+              {t("footerhome_content")}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link to="/register">
-                <Button color="amber">Get Started</Button>
-              </Link>
-              <Link to="/contact">
-                <Button
-                  variant="outlined"
-                  className="rounded-full text-white border-white"
-                >
-                  Contact Us
-                </Button>
+                <Button color="amber">{t("footerhome_button")}</Button>
               </Link>
             </div>
           </div>

@@ -73,14 +73,9 @@ function Register() {
     email: "",
     password: "",
     courseName: "",
-    industry: "",
     confirmPassword: "",
   });
 
-  // ✅ ديناميك حسب الـ role
-  const nameLabel = formData.role === "company" ? "Company Name" : "Full Name";
-  const namePlaceholder =
-    formData.role === "company" ? "e.g. Acme Corp" : "John Doe";
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -105,6 +100,9 @@ function Register() {
     console.log("Register Data:", formData);
     navigate("/courses");
   };
+   const nameLabel = formData.role === "company" ? "Company Name" : "Full Name";
+  const namePlaceholder =
+    formData.role === "company" ? "e.g. Acme Corp" : "John Doe";
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row bg-light-background dark:bg-dark-background">
@@ -218,7 +216,6 @@ function Register() {
                   <option value="">Choose your role</option>
                   <option value="student">Student</option>
                   <option value="teacher">Teacher</option>
-                  <option value="company">Company</option>
                 </select>
               </div>
             </div>
@@ -287,37 +284,6 @@ function Register() {
             )}
 
            
-            {formData.role === "company" && (
-              <div>
-                <label
-                  htmlFor="industry"
-                  className="block text-sm font-medium text-light-foreground dark:text-dark-foreground mb-2"
-                >
-                  Industry / Field
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
-                    <Briefcase className="h-5 w-5 text-light-muted-foreground dark:text-dark-muted-foreground" />
-                  </div>
-                  <input
-                    id="industry"
-                    type="text"
-                    name="industry"
-                    value={formData.industry}
-                    onChange={handleChange}
-                    placeholder="e.g. Technology, Education, Healthcare..."
-                    required
-                    className="w-full pl-12 pr-4 py-3.5
-                      bg-light-input dark:bg-dark-input
-                      text-light-foreground dark:text-dark-foreground
-                      rounded-xl border border-light-border dark:border-dark-border
-                      focus:outline-none focus:ring-2 focus:ring-light-ring focus:border-transparent
-                      transition-all
-                      placeholder:text-light-muted-foreground dark:placeholder:text-dark-muted-foreground"
-                  />
-                </div>
-              </div>
-            )}
 
             {/* Phone */}
             <div>
