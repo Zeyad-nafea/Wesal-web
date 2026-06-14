@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 import {
   Mail,
   Lock,
@@ -11,29 +12,6 @@ import {
   Video,
   Briefcase,
 } from "lucide-react";
-
-const features = [
-  {
-    icon: Shield,
-    title: "Secure Platform",
-    description: "Your data is protected with enterprise-grade security",
-  },
-  {
-    icon: Users,
-    title: "Expert Instructors",
-    description: "Learn from industry professionals and educators",
-  },
-  {
-    icon: Video,
-    title: "Online Workshops",
-    description: "Interactive sessions and live learning experiences",
-  },
-  {
-    icon: Briefcase,
-    title: "Career Support",
-    description: "Internships and job placement assistance",
-  },
-];
 
 const countries = [
   { code: "+20", flag: "🇪🇬", name: "Egypt" },
@@ -61,6 +39,7 @@ const countries = [
 
 function Register() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [activeTab] = useState("signup");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -76,6 +55,25 @@ function Register() {
     confirmPassword: "",
   });
 
+  // ✅ جوه الـ function عشان تستخدم t()
+  const features = [
+    { icon: Shield, title: t("secure_head"), description: t("secure_content") },
+    {
+      icon: Users,
+      title: t("expert_instructor"),
+      description: t("expert_instructor_content"),
+    },
+    {
+      icon: Video,
+      title: t("online_workshop"),
+      description: t("online_workshops_content"),
+    },
+    {
+      icon: Briefcase,
+      title: t("career_support"),
+      description: t("career_support_content"),
+    },
+  ];
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -100,7 +98,9 @@ function Register() {
     console.log("Register Data:", formData);
     navigate("/courses");
   };
-   const nameLabel = formData.role === "company" ? "Company Name" : "Full Name";
+
+  const nameLabel =
+    formData.role === "company" ? t("companyName") : t("fullName");
   const namePlaceholder =
     formData.role === "company" ? "e.g. Acme Corp" : "John Doe";
 
@@ -120,11 +120,9 @@ function Register() {
           </div>
           <div className="max-w-lg">
             <h1 className="text-4xl xl:text-5xl font-bold text-light-cream mb-4 leading-tight">
-              Start Your Learning Journey
+              {t("welcome")}
             </h1>
-            <p className="text-lg text-light-cream/80 mb-12">
-              Join thousands of learners on WESAL
-            </p>
+            <p className="text-lg text-light-cream/80 mb-12">{t("join1")}</p>
             <div className="space-y-6">
               {features.map((feature, index) => (
                 <div key={index} className="flex items-start gap-4 group">
@@ -160,7 +158,7 @@ function Register() {
                   : "text-light-muted-foreground dark:text-dark-muted-foreground hover:text-light-foreground dark:hover:text-dark-foreground"
               }`}
             >
-              Sign In
+              {t("signIn")}
             </button>
             <button
               type="button"
@@ -171,17 +169,17 @@ function Register() {
                   : "text-light-muted-foreground dark:text-dark-muted-foreground hover:text-light-foreground dark:hover:text-dark-foreground"
               }`}
             >
-              Sign Up
+              {t("signUp")}
             </button>
           </div>
 
           {/* ===== Heading ===== */}
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-light-foreground dark:text-dark-foreground mb-2">
-              Create Account
+              {t("createAccount")}
             </h2>
             <p className="text-light-muted-foreground dark:text-dark-muted-foreground">
-              Join thousands of learners on WESAL
+              {t("join1")}
             </p>
           </div>
 
@@ -193,7 +191,7 @@ function Register() {
                 htmlFor="role"
                 className="block text-sm font-medium text-light-foreground dark:text-dark-foreground mb-2"
               >
-                Role
+                {t("role")}
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
@@ -211,11 +209,11 @@ function Register() {
                     rounded-xl border border-light-border dark:border-dark-border
                     focus:outline-none focus:ring-2 focus:ring-light-ring focus:border-transparent
                     transition-all"
-                    required
+                  required
                 >
-                  <option value="">Choose your role</option>
-                  <option value="student">Student</option>
-                  <option value="teacher">Teacher</option>
+                  <option value="">{t("chooseRole")}</option>
+                  <option value="student">{t("student")}</option>
+                  <option value="teacher">{t("teacher")}</option>
                 </select>
               </div>
             </div>
@@ -225,7 +223,6 @@ function Register() {
                 htmlFor="fullName"
                 className="block text-sm font-medium text-light-foreground dark:text-dark-foreground mb-2"
               >
-            
                 {nameLabel}
               </label>
               <div className="relative">
@@ -238,7 +235,7 @@ function Register() {
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleChange}
-                  placeholder={namePlaceholder} 
+                  placeholder={namePlaceholder}
                   required
                   className="w-full pl-12 pr-4 py-3.5
                     bg-light-input dark:bg-dark-input
@@ -257,7 +254,7 @@ function Register() {
                   htmlFor="courseName"
                   className="block text-sm font-medium text-light-foreground dark:text-dark-foreground mb-2"
                 >
-                  Course Name
+                  {t("courseName")}
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
@@ -283,15 +280,13 @@ function Register() {
               </div>
             )}
 
-           
-
             {/* Phone */}
             <div>
               <label
                 htmlFor="phone"
                 className="block text-sm font-medium text-light-foreground dark:text-dark-foreground mb-2"
               >
-                Phone Number
+                {t("phone")}
               </label>
               <div className="flex gap-2">
                 <select
@@ -337,7 +332,7 @@ function Register() {
                 htmlFor="signup-email"
                 className="block text-sm font-medium text-light-foreground dark:text-dark-foreground mb-2"
               >
-                Email Address
+                {t("email")}
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
@@ -368,7 +363,7 @@ function Register() {
                 htmlFor="signup-password"
                 className="block text-sm font-medium text-light-foreground dark:text-dark-foreground mb-2"
               >
-                Password
+                {t("password")}
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
@@ -410,7 +405,7 @@ function Register() {
                 htmlFor="confirmPassword"
                 className="block text-sm font-medium text-light-foreground dark:text-dark-foreground mb-2"
               >
-                Confirm Password
+                {t("confirmPassword")}
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
@@ -458,7 +453,7 @@ function Register() {
               type="submit"
               className="w-full py-3.5 px-4 bg-light-ring hover:bg-light-ring/90 text-white font-semibold rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-light-ring focus:ring-offset-2"
             >
-              Create Account
+              {t("createAccount")}
             </button>
 
             <div className="relative my-8">
@@ -467,7 +462,7 @@ function Register() {
               </div>
               <div className="relative flex justify-center text-xs uppercase tracking-wider">
                 <span className="px-4 bg-[var(--background)] text-[var(--muted-foreground)] font-medium">
-                  Or continue with
+                  {t("orContinue")}
                 </span>
               </div>
             </div>
@@ -478,10 +473,22 @@ function Register() {
                 className="flex items-center justify-center gap-2 px-4 py-3 bg-light-card dark:bg-dark-card hover:bg-light-secondary dark:hover:bg-dark-secondary border border-light-border dark:border-dark-border rounded-xl transition-all"
               >
                 <svg className="h-5 w-5" viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                  <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                  <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
-                  <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+                  <path
+                    fill="currentColor"
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                  />
                 </svg>
                 <span className="text-sm font-medium text-light-foreground dark:text-dark-foreground">
                   Google
@@ -501,13 +508,13 @@ function Register() {
             </div>
 
             <p className="text-center text-sm text-light-muted-foreground dark:text-dark-muted-foreground">
-              Already have an account?{" "}
+              {t("haveAccount")}{" "}
               <button
                 type="button"
                 onClick={() => navigate("/Login")}
                 className="font-medium text-light-ring hover:underline"
               >
-                Sign In
+                {t("signIn")}
               </button>
             </p>
           </form>
