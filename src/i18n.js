@@ -8,10 +8,11 @@ i18n.use(initReactI18next).init({
     en: { translation: en },
     ar: { translation: ar },
   },
-  lng: "ar",
+  lng: "en",
   fallbackLng: "en",
 });
-
+document.documentElement.dir = i18n.language === "ar" ? "rtl" : "ltr";
+document.documentElement.lang = i18n.language;
 i18n.on("languageChanged", (lng) => {
   document.documentElement.dir = lng === "ar" ? "rtl" : "ltr";
   document.documentElement.lang = lng;

@@ -2,61 +2,62 @@ import React, { useState } from "react";
 import { Card, CardBody, Typography } from "@material-tailwind/react";
 import { Mail, Linkedin, Facebook, Send } from "lucide-react";
 import emailjs from "@emailjs/browser";
+import { useTranslation } from "react-i18next";
 
 const SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID;
 const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY;
 import { Link } from "react-router-dom";
 
-const contactInfo = [
-  {
-    icon: (
-      <Mail className="w-6 h-6 dark:text-dark-foreground text-light-foreground" />
-    ),
-    title: "Email Us",
-    details: ["wesalorganization@gmail.com"],
-    description: "Send us an email anytime",
-    url: "https://mail.google.com/mail/?view=cm&to=wesalorganization@gmail.com",
-  },
-  {
-    icon: (
-      <Linkedin className="w-6 h-6 dark:text-dark-foreground text-light-foreground" />
-    ),
-    title: "LinkedIn",
-    details: ["Wesal - وِصَـال"],
-    description: "Connect with us on LinkedIn",
-    url: "https://www.linkedin.com/company/wesall1/",
-  },
-  {
-    icon: (
-      <Facebook className="w-6 h-6 dark:text-dark-foreground text-light-foreground" />
-    ),
-    title: "Facebook",
-    details: ["وِصَـال - Wesal"],
-    description: "Follow us on Facebook",
-    url: "https://www.facebook.com/profile.php?id=61562997493853&mibextid=ZbWKwL",
-  },
-];
-
-const faqItems = [
-  {
-    question: "How do I enroll in a course?",
-    answer:
-      "Browse our courses page, select the course you want, and click 'Enroll Now' to get started.",
-  },
-  {
-    question: "Are the workshops online or in-person?",
-    answer:
-      "We offer both online and in-person workshops. Check the workshop details for specific information.",
-  },
-  {
-    question: "How do I apply for internships?",
-    answer:
-      "Visit our Internships page, find the position you're interested in, and submit your application online.",
-  },
-];
-
 function Contact() {
+  const { t } = useTranslation();
+  const contactInfo = [
+    {
+      icon: (
+        <Mail className="w-6 h-6 dark:text-dark-foreground text-light-foreground" />
+      ),
+      title: t("email1"),
+      details: ["wesalorganization@gmail.com"],
+      description: t("email2"),
+      url: "https://mail.google.com/mail/?view=cm&to=wesalorganization@gmail.com",
+    },
+    {
+      icon: (
+        <Linkedin className="w-6 h-6 dark:text-dark-foreground text-light-foreground" />
+      ),
+      title: t("linkedin"),
+      details: ["Wesal - وِصَـال"],
+      description: t("linkedin1"),
+      url: "https://www.linkedin.com/company/wesall1/",
+    },
+    {
+      icon: (
+        <Facebook className="w-6 h-6 dark:text-dark-foreground text-light-foreground" />
+      ),
+      title: t("facebook"),
+      details: ["وِصَـال - Wesal"],
+      description: t("facebook1"),
+      url: "https://www.facebook.com/profile.php?id=61562997493853&mibextid=ZbWKwL",
+    },
+  ];
+
+  const faqItems = [
+    {
+      question: t("Q1"),
+      answer:
+        t("A1"),
+    },
+    {
+      question: t("Q2"),
+      answer:
+        t("A2"),
+    },
+    {
+      question: t("Q3"),
+      answer:
+        t("A3"),
+    },
+  ];
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -99,11 +100,10 @@ function Contact() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl mb-6 text-white leading-tight">
-              Get in <span className="text-light-accent">Touch</span>
+              {t("contact1")} <span className="text-light-accent">{t("contact2")}</span>
             </h1>
             <p className="text-xl text-light-cream/90">
-              Have questions? We'd love to hear from you. Send us a message and
-              we'll respond as soon as possible.
+              {t("contact_content")}
             </p>
           </div>
         </div>
@@ -141,11 +141,10 @@ function Contact() {
             <div className="bg-light-card dark:bg-dark-card rounded-xl p-8 border border-light-border dark:border-dark-border">
               <div className="mb-8">
                 <h2 className="text-3xl text-light-foreground dark:text-dark-foreground mb-3">
-                  Send us a Message
+                  {t("form")}
                 </h2>
                 <p className="text-light-muted-foreground dark:text-dark-muted-foreground">
-                  Fill out the form below and we'll get back to you within 24
-                  hours.
+                  {t("form_head")}
                 </p>
               </div>
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -155,7 +154,7 @@ function Contact() {
                       htmlFor="name"
                       className="block text-sm text-light-foreground dark:text-dark-foreground mb-2"
                     >
-                      Full Name *
+                      {t("name")}
                     </label>
                     <input
                       type="text"
@@ -164,7 +163,7 @@ function Contact() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="Enter your name"
+                      placeholder={t("name1")}
                       className="w-full px-4 py-3 bg-light-input dark:bg-dark-input rounded-lg text-light-foreground dark:text-dark-foreground placeholder:text-light-muted-foreground dark:placeholder:text-dark-muted-foreground focus:outline-none focus:border-light-accent border border-light-border dark:border-dark-border transition-colors"
                     />
                   </div>
@@ -173,7 +172,7 @@ function Contact() {
                       htmlFor="email"
                       className="block text-sm text-light-foreground dark:text-dark-foreground mb-2"
                     >
-                      Email Address *
+                      {t("address")}
                     </label>
                     <input
                       type="email"
@@ -182,7 +181,7 @@ function Contact() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="Enter your email"
+                      placeholder={t("address1")}
                       className="w-full px-4 py-3 bg-light-input dark:bg-dark-input rounded-lg text-light-foreground dark:text-dark-foreground placeholder:text-light-muted-foreground dark:placeholder:text-dark-muted-foreground focus:outline-none focus:border-light-accent border border-light-border dark:border-dark-border transition-colors"
                     />
                   </div>
@@ -192,7 +191,7 @@ function Contact() {
                     htmlFor="subject"
                     className="block text-sm text-light-foreground dark:text-dark-foreground mb-2"
                   >
-                    Subject *
+                    {t("subject")}
                   </label>
                   <select
                     id="subject"
@@ -202,20 +201,20 @@ function Contact() {
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-light-input dark:bg-dark-input rounded-lg border border-light-border dark:border-dark-border text-light-foreground dark:text-dark-foreground focus:outline-none focus:border-light-accent"
                   >
-                    <option value="">Select a subject</option>
-                    <option value="General Inquiry">General Inquiry</option>
+                    <option value="">{t("option1")}</option>
+                    <option value="General Inquiry">{t("option2")}</option>
                     <option value="Course Information">
-                      Course Information
+                      {t("option3")}
                     </option>
                     <option value="Workshop Questions">
-                      Workshop Questions
+                      {t("option4")}
                     </option>
                     <option value="Internship Applications">
-                      Internship Applications
+                      {t("option5")}
                     </option>
-                    <option value="Technical Support">Technical Support</option>
+                    <option value="Technical Support">{t("option6")}</option>
                     <option value="Billing & Payments">
-                      Billing & Payments
+                      {t("option7")}
                     </option>
                   </select>
                 </div>
@@ -224,7 +223,7 @@ function Contact() {
                     htmlFor="message"
                     className="block text-sm text-light-foreground dark:text-dark-foreground mb-2"
                   >
-                    Message *
+                   {t("message")}
                   </label>
                   <textarea
                     id="message"
@@ -232,19 +231,19 @@ function Contact() {
                     required
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Tell us how we can help you..."
+                    placeholder={t("message_content")}
                     rows={5}
                     className="w-full px-4 py-3 rounded-lg border border-light-border dark:border-dark-border bg-light-input dark:bg-dark-input text-light-foreground dark:text-dark-foreground focus:outline-none focus:border-light-accent resize-none"
                   />
                 </div>
                 {status === "success" && (
                   <p className="text-green-500 text-center">
-                    Message sent successfully!
+                    {t("sucess")}
                   </p>
                 )}
                 {status === "error" && (
                   <p className="text-red-500 text-center">
-                    Something went wrong. Please try again.
+                    {t("error")}
                   </p>
                 )}
                 <button
@@ -253,7 +252,7 @@ function Contact() {
                   className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-lg bg-light-accent text-white font-semibold hover:opacity-90 transition disabled:opacity-50"
                 >
                   <Send className="w-4 h-4" />
-                  {status === "sending" ? "Sending..." : "Send Message"}
+                  {status === "sending" ? "Sending..." : t("form_button")}
                 </button>
               </form>
             </div>
