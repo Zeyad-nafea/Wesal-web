@@ -97,10 +97,8 @@
   "contact_content": "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
   "email1": "Email Us",
   "email2": "Send us an email anytime",
-  "linkedin":"linkedin",
-  "linkedin1": "Connect with us on LinkedIn",
-  "facebook":"Facebook",
-  "facebook1": "Follow us on Facebook",
+  "linkedin": "Connect with us on LinkedIn",
+  "facebook": "Follow us on Facebook",
   "Frequently": "Frequently Asked Questions",
   "Q1": "How do I enroll in a course?",
   "A1": "Browse our courses page, select the course you want, and click 'Enroll Now' to get started.",
@@ -111,7 +109,6 @@
   "form":"Send us a Message",
   "form_head":"Fill out the form below and we'll get back to you within 24 hours.",
   "name":"Full Name *",
-  "name1":"Enter your name",
   "address":"Email Address *",
   "address1":"Enter your email",
   "subject":"Subject *",
@@ -127,6 +124,7 @@
   "sucess":"Message sent successfully!",
   "error":"Something went wrong. Please try again.",
   "form_button":"Send Message",
+
 
   "welcome": "Start Your Learning Journey",
   "createAccount": "Create Account",
